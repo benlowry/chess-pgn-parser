@@ -4,8 +4,8 @@ const fs = require('fs')
 const parser = require('./parser.js')
 const path = require('path')
 
-describe('parser.test4.pgn', () => {
-  const demoPGN = fs.readFileSync(path.join(__dirname, 'parser.test4.pgn')).toString()
+describe('test1.pgn', () => {
+  const demoPGN = fs.readFileSync(path.join(__dirname, 'test001.pgn')).toString()
   describe('toString', () => {
     it('should resconstruct', async () => {
       const pgn = parser.parse(demoPGN).toString()
@@ -16,16 +16,13 @@ describe('parser.test4.pgn', () => {
   describe('parseTags', () => {
     it('should parse tags', async () => {
       const tags = parser.parseTags(demoPGN)
-      assert.strictEqual(tags.Event, '?')
-      assert.strictEqual(tags.Site, 'https://lichess.org/study/Nbv')
-      assert.strictEqual(tags.Date, '????.??.??')
-      assert.strictEqual(tags.Round, '?')
-      assert.strictEqual(tags.White, 'King\'s Indian Defense')
-      assert.strictEqual(tags.Black, '?')
-      assert.strictEqual(tags.Result, '*')
-      assert.strictEqual(tags.ECO, 'E99')
-      assert.strictEqual(tags.PlyCount, '78')
-      assert.strictEqual(tags.SourceDate, '2014.01.17')
+      assert.strictEqual(tags.Event, 'F/S Return Match')
+      assert.strictEqual(tags.Site, 'Belgrade, Serbia JUG')
+      assert.strictEqual(tags.Date, '1992.11.04')
+      assert.strictEqual(tags.Round, '29')
+      assert.strictEqual(tags.White, 'Fischer, Robert J.')
+      assert.strictEqual(tags.Black, 'Spassky, Boris V.')
+      assert.strictEqual(tags.Result, '1/2-1/2')
     })
   })
 
@@ -53,36 +50,41 @@ describe('parser.test4.pgn', () => {
   describe('tokenizeLine', () => {
     it('should tokenize line', async () => {
       const tokenizedPGN = parser.tokenizeLines(demoPGN)
-      const line1 = parser.tokenizeLine(tokenizedPGN[3])
+      const line1 = parser.tokenizeLine(tokenizedPGN[9])
       assert.strictEqual(line1.length, 3)
-      assert.strictEqual(line1[0], '3.')
-      assert.strictEqual(line1[1], 'Nc3')
-      assert.strictEqual(line1[2], 'Bg7')
-      const line2 = parser.tokenizeLine(tokenizedPGN[4])
+      assert.strictEqual(line1[0], '10.')
+      assert.strictEqual(line1[1], 'd4')
+      assert.strictEqual(line1[2], 'Nbd7')
+      const line2 = parser.tokenizeLine(tokenizedPGN[2])
       assert.strictEqual(line2.length, 4)
-      assert.strictEqual(line2[0], '4.')
-      assert.strictEqual(line2[1], 'e4')
-      assert.strictEqual(line2[2], 'd6')
-      assert.strictEqual(line2[3], "{[%csl Rd4][%cal Gg7d4] This is the main starting point for the King's Indian Defense. Black gives up some space in the center to develop their kingside quickly and then look for a timely pawn strike against the center, usually the d4 square.}")
+      assert.strictEqual(line2[0], '3.')
+      assert.strictEqual(line2[1], 'Bb5')
+      assert.strictEqual(line2[2], 'a6')
+      assert.strictEqual(line2[3], '{This opening is called the Ruy Lopez.}')
     })
   })
 
   describe('parseTurn', () => {
     it('should parse turn', async () => {
       const tokenizedPGN = parser.tokenizeLines(demoPGN)
-      const turn1 = parser.parseTurn(tokenizedPGN[4])
-      assert.strictEqual(turn1[0].moveNumber, '4')
-      assert.strictEqual(turn1[0].to, 'e4')
+      const turn1 = parser.parseTurn(tokenizedPGN[9])
+      assert.strictEqual(turn1[0].moveNumber, '10')
+      assert.strictEqual(turn1[0].to, 'd4')
       assert.strictEqual(turn1[0].color, 'w')
-      const turn2 = parser.parseTurn(tokenizedPGN[1])
-      assert.strictEqual(turn2[0].moveNumber, '1')
-      assert.strictEqual(turn2[0].type, 'P')
-      assert.strictEqual(turn2[0].to, 'd4')
+      assert.strictEqual(turn1[1].moveNumber, '10')
+      assert.strictEqual(turn1[1].type, 'N')
+      assert.strictEqual(turn1[1].requireColumn, 'b')
+      assert.strictEqual(turn1[1].to, 'd7')
+      assert.strictEqual(turn1[1].color, 'b')
+      const turn2 = parser.parseTurn(tokenizedPGN[2])
+      assert.strictEqual(turn2[0].moveNumber, '3')
+      assert.strictEqual(turn2[0].type, 'B')
+      assert.strictEqual(turn2[0].to, 'b5')
       assert.strictEqual(turn2[0].color, 'w')
-      assert.strictEqual(turn2[1].moveNumber, '1')
-      assert.strictEqual(turn2[1].type, 'N')
-      assert.strictEqual(turn2[1].to, 'f6')
+      assert.strictEqual(turn2[1].moveNumber, '3')
+      assert.strictEqual(turn2[1].to, 'a6')
       assert.strictEqual(turn2[1].color, 'b')
+      assert.strictEqual(turn2[1].sequence[1], '{This opening is called the Ruy Lopez.}')
     })
   })
 
@@ -126,40 +128,32 @@ describe('parser.test4.pgn', () => {
         { type: 'R', color: 'w', start: 'h1', coordinate: 'h1', image: 'oR.png' }
       ]
       for (const turn of turns) {
-        try {
-          parser.processTurn(turn, turns, pieces)
-        } catch (error) {
-          console.log('error', turn, error)
-        }
+        parser.processTurn(turn, turns, pieces)
       }
-      // the main timeline (0)
-      let piece = turns[0].pieces.filter(piece => piece.coordinateBefore)[0]
-      assert.strictEqual(piece.coordinate, 'd4')
-      assert.strictEqual(piece.coordinateBefore, 'd2')
-      piece = turns[1].pieces.filter(piece => piece.coordinateBefore)[0]
-      assert.strictEqual(piece.coordinate, 'f6')
-      assert.strictEqual(piece.coordinateBefore, 'g8')
-      piece = turns[2].pieces.filter(piece => piece.coordinateBefore)[0]
-      assert.strictEqual(piece.coordinate, 'c4')
-      assert.strictEqual(piece.coordinateBefore, 'c2')
-      piece = turns[3].pieces.filter(piece => piece.coordinateBefore)[0]
-      assert.strictEqual(piece.coordinate, 'g6')
-      assert.strictEqual(piece.coordinateBefore, 'g7')
-      piece = turns[4].pieces.filter(piece => piece.coordinateBefore)[0]
-      assert.strictEqual(piece.coordinate, 'c3')
-      assert.strictEqual(piece.coordinateBefore, 'b1')
-      piece = turns[5].pieces.filter(piece => piece.coordinateBefore)[0]
-      assert.strictEqual(piece.coordinate, 'g7')
-      assert.strictEqual(piece.coordinateBefore, 'f8')
-      piece = turns[6].pieces.filter(piece => piece.coordinateBefore)[0]
-      assert.strictEqual(piece.coordinate, 'e4')
-      assert.strictEqual(piece.coordinateBefore, 'e2')
-      piece = turns[7].pieces.filter(piece => piece.coordinateBefore)[0]
-      assert.strictEqual(piece.coordinate, 'd6')
-      assert.strictEqual(piece.coordinateBefore, 'd7')
-      piece = turns[8].pieces.filter(piece => piece.coordinateBefore)[0]
-      assert.strictEqual(piece.coordinate, 'f3')
-      assert.strictEqual(piece.coordinateBefore, 'g1')
+      const finalPiecePositions = turns[turns.length - 1].pieces
+      assert.strictEqual(finalPiecePositions.length, 11)
+      let found = finalPiecePositions.filter(piece => piece.color === 'b' && piece.type === 'P' && piece.coordinate === 'b4')
+      assert.strictEqual(found.length, 1)
+      found = finalPiecePositions.filter(piece => piece.color === 'b' && piece.type === 'P' && piece.coordinate === 'g6')
+      assert.strictEqual(found.length, 1)
+      found = finalPiecePositions.filter(piece => piece.color === 'b' && piece.type === 'P' && piece.coordinate === 'g5')
+      assert.strictEqual(found.length, 1)
+      found = finalPiecePositions.filter(piece => piece.color === 'w' && piece.type === 'P' && piece.coordinate === 'b3')
+      assert.strictEqual(found.length, 1)
+      found = finalPiecePositions.filter(piece => piece.color === 'w' && piece.type === 'P' && piece.coordinate === 'f3')
+      assert.strictEqual(found.length, 1)
+      found = finalPiecePositions.filter(piece => piece.color === 'w' && piece.type === 'P' && piece.coordinate === 'g4')
+      assert.strictEqual(found.length, 1)
+      found = finalPiecePositions.filter(piece => piece.color === 'b' && piece.type === 'B' && piece.coordinate === 'd3')
+      assert.strictEqual(found.length, 1)
+      found = finalPiecePositions.filter(piece => piece.color === 'b' && piece.type === 'N' && piece.coordinate === 'f2')
+      assert.strictEqual(found.length, 1)
+      found = finalPiecePositions.filter(piece => piece.color === 'w' && piece.type === 'R' && piece.coordinate === 'e6')
+      assert.strictEqual(found.length, 1)
+      found = finalPiecePositions.filter(piece => piece.color === 'b' && piece.type === 'K' && piece.coordinate === 'c5')
+      assert.strictEqual(found.length, 1)
+      found = finalPiecePositions.filter(piece => piece.color === 'w' && piece.type === 'K' && piece.coordinate === 'd2')
+      assert.strictEqual(found.length, 1)
     })
   })
 })

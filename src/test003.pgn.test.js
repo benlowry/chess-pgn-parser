@@ -4,8 +4,8 @@ const fs = require('fs')
 const parser = require('./parser.js')
 const path = require('path')
 
-describe('parser.test3.pgn', () => {
-  const demoPGN = fs.readFileSync(path.join(__dirname, 'parser.test3.pgn')).toString()
+describe('test3.pgn', () => {
+  const demoPGN = fs.readFileSync(path.join(__dirname, 'test003.pgn')).toString()
   describe('toString', () => {
     it('should resconstruct', async () => {
       const pgn = parser.parse(demoPGN).toString()

@@ -469,8 +469,20 @@
    */
   function parseTurn (line) {
     const lineParts = tokenizeLine(line)
-    const numberPart = lineParts.shift()
-    const moveNumber = numberPart.substring(0, numberPart.indexOf('.'))
+    let moveNumber, numberPart
+    for (const part of lineParts) {
+      if (part.indexOf('.') === -1) {
+        continue
+      }
+      moveNumber = part.substring(0, part.indexOf('.'))
+      try {
+        if (parseInt(moveNumber, 10).toString() === moveNumber) {
+          numberPart = part
+          break
+        }
+      } catch (error) {
+      }
+    }
     const coordinates = findCoordinates(lineParts)
     let color
     const moves = []

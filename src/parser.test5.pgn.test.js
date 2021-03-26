@@ -9,7 +9,7 @@ describe('parser.test5.pgn', () => {
   describe('toString', () => {
     it('should resconstruct', async () => {
       const pgn = parser.parse(demoPGN).toString()
-      assert.strictEqual(parser.cleanSpacing(demoPGN), parser.cleanSpacing(pgn).trim())
+      assert.strictEqual(parser.cleanSpacing(demoPGN), parser.cleanSpacing(pgn))
     })
   })
 
@@ -96,13 +96,13 @@ describe('parser.test5.pgn', () => {
       assert.strictEqual(turn2[0].color, 'w')
       assert.strictEqual(turn2[0].kingSideCastling, true)
       assert.strictEqual(turn2[1].moveNumber, '9')
-      assert.strictEqual(turn2[1].type , 'R')
+      assert.strictEqual(turn2[1].type, 'R')
       assert.strictEqual(turn2[1].to, 'e8')
       assert.strictEqual(turn2[1].color, 'b')
     })
   })
 
-  describe.only('processTurn', () => {
+  describe('processTurn', () => {
     it('should parse turns', async () => {
       // the last move's pieces are checked for correctness
       const moveData = parser.tokenizeLines(demoPGN)

@@ -779,12 +779,46 @@
           if (captureLeftPiece && captureLeftPiece.color !== piece.color) {
             return [piece.coordinate, captureLeft]
           }
+          if (piece.color === 'w') {
+            const enPassantDownCoordinate = addRow(move.to, -1)
+            if (enPassantDownCoordinate) {
+              const downPiece = checkObstructed(enPassantDownCoordinate, pieces)
+              if (downPiece && downPiece.type === 'P' && downPiece.color !== piece.color) {
+                return [piece.coordinate, captureLeft]
+              }
+            }
+          } else if (piece.color === 'b') {
+            const enPassantUpCoordinate = addRow(move.to, -1)
+            if (enPassantUpCoordinate) {
+              const upPiece = checkObstructed(enPassantUpCoordinate, pieces)
+              if (upPiece && upPiece.type === 'P' && upPiece.color !== piece.color) {
+                return [piece.coordinate, captureRight]
+              }
+            }
+          }
         }
         const captureRight = addColumn(nextValue)
         if (move.to === captureRight) {
           const captureRightPiece = checkObstructed(captureRight, pieces)
           if (captureRightPiece && captureRightPiece.color !== piece.color) {
             return [piece.coordinate, captureRight]
+          }
+          if (piece.color === 'w') {
+            const enPassantDownCoordinate = addRow(move.to, -1)
+            if (enPassantDownCoordinate) {
+              const downPiece = checkObstructed(enPassantDownCoordinate, pieces)
+              if (downPiece && downPiece.type === 'P' && downPiece.color !== piece.color) {
+                return [piece.coordinate, captureLeft]
+              }
+            }
+          } else if (piece.color === 'b') {
+            const enPassantUpCoordinate = addRow(move.to, -1)
+            if (enPassantUpCoordinate) {
+              const upPiece = checkObstructed(enPassantUpCoordinate, pieces)
+              if (upPiece && upPiece.type === 'P' && upPiece.color !== piece.color) {
+                return [piece.coordinate, captureRight]
+              }
+            }
           }
         }
       } else if (piece.coordinate === piece.start) {

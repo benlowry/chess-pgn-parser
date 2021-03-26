@@ -1,0 +1,293 @@
+
+
+  parser.js
+    extractNextLine
+      ✓ should extract turn 1
+      ✓ should extract turn with annotation
+      ✓ should extract turn with nested turns
+      ✓ should extract turn with preceeding annotation
+      ✓ should extract turn with preceeding nested turns
+    processTurn
+      ✓ should move piece
+      ✓ should capture piece
+      ✓ should castle pieces (king-side)
+      ✓ should castle pieces (queen-side)
+      ✓ should parse alternative turns
+    createTurnObject
+      ✓ should identify queen-side castling
+      ✓ should identify king-side castling
+      ✓ should identify capturing
+      ✓ should identify check
+      ✓ should identify checkmate
+      ✓ should identify column hints
+      ✓ should identify row hints
+      ✓ should identify piece type
+      ✓ should identify promotion
+      ✓ should identify default promoted type to Q
+      ✓ should identify specified promoted type to
+    findCoordinates
+      ✓ should find no coordinates
+      ✓ should find one coordinates
+      ✓ should find two coordinates
+      ✓ should ignore (content)
+      ✓ should ignore {content}
+      ✓ should including castling
+    findClosingBracket
+      ✓ should find ending of []
+      ✓ should find ending of nested []
+      ✓ should find ending of {}
+      ✓ should find ending of nested {}
+      ✓ should find ending of outer {}
+      ✓ should find ending of ()
+      ✓ should something
+    addRow
+      ✓ should add 1 to row
+      ✓ should subtract 1 from row
+      ✓ should subtract 2 from row
+      ✓ should exceed row bounds and return undefined
+      ✓ should exceed row bounds and return undefined
+    addColumn
+      ✓ should add 1 to column
+      ✓ should subtract 1 from column
+      ✓ should subtract 2 from column
+      ✓ should exceed column bounds and return undefined
+      ✓ should exceed column bounds and return undefined
+    nextCoordinateUpLeft
+      ✓ should add one row and subtract one column
+    nextCoordinateUpRight
+      ✓ should add one row and add one column
+    nextCoordinateDownLeft
+      ✓ should subtract one row and subtract one column
+    nextCoordinateDownRight
+      ✓ should subtract one row and add one column
+    nextCoordinateUp
+      ✓ should add one row
+    nextCoordinateDown
+      ✓ should subtract one row
+    nextCoordinateLeft
+      ✓ should subtract one column
+    nextCoordinateRight
+      ✓ should add one column
+    addColumnAndRow
+      ✓ should add 1 to column
+      ✓ should subtract 1 from column
+      ✓ should subtract 2 from column
+      ✓ should exceed column bounds and return undefined
+      ✓ should exceed column bounds and return undefined
+      ✓ should add 1 to row
+      ✓ should subtract 1 from row
+      ✓ should subtract 2 from row
+      ✓ should exceed row bounds and return undefined
+      ✓ should exceed row bounds and return undefined
+    calculatePieceMovement
+      knight
+        ✓ should return left-left-up
+        ✓ should return left-left-up capturing
+        ✓ should return left-left-down
+        ✓ should return left-left-down capturing
+        ✓ should return right-right-up
+        ✓ should return right-right-up capturing
+        ✓ should return right-right-down
+        ✓ should return right-right-down capturing
+        ✓ should return up-up-left
+        ✓ should return up-up-left capturing
+        ✓ should return up-up-right
+        ✓ should return up-up-right capturing
+        ✓ should return down-down-left
+        ✓ should return down-down-left capturing
+        ✓ should return down-down-right
+        ✓ should return down-down-right capturing
+      pawn
+        ✓ should return two spaces up
+        ✓ should return two spaces down
+        ✓ should return one space up
+        ✓ should return one space down
+        ✓ should return left-up capturing
+        ✓ should return left-down capturing
+        ✓ should return right-up capturing
+        ✓ should return right-down capturing
+      king
+        ✓ should return left
+        ✓ should return left capturing
+        ✓ should return right
+        ✓ should return right capturing
+        ✓ should return up
+        ✓ should return up capturing
+        ✓ should return down
+        ✓ should return down capturing
+        ✓ should return left-up
+        ✓ should return left-up capturing
+        ✓ should return left-down
+        ✓ should return left-down capturing
+        ✓ should return right-up
+        ✓ should return right-up capturing
+        ✓ should return right-down
+        ✓ should return right-down capturing
+      rook
+        ✓ should return left
+        ✓ should return left (multiple)
+        ✓ should return left capturing
+        ✓ should return left capturing (multiple)
+        ✓ should return right
+        ✓ should return right (multiple)
+        ✓ should return right capturing
+        ✓ should return right capturing (multiple)
+        ✓ should return down
+        ✓ should return down (multiple)
+        ✓ should return down capturing
+        ✓ should return down capturing (multiple)
+        ✓ should return up
+        ✓ should return up (multiple)
+        ✓ should return up capturing
+        ✓ should return up capturing (multiple)
+      bishop
+        ✓ should return up-left
+        ✓ should return up-left (multiple)
+        ✓ should return up-left capturing
+        ✓ should return up-left capturing (multiple)
+        ✓ should return up-right
+        ✓ should return up-right (multiple)
+        ✓ should return up-right capturing
+        ✓ should return up-right capturing (multiple)
+        ✓ should return down-left
+        ✓ should return down-left (multiple)
+        ✓ should return down-left capturing
+        ✓ should return down-left capturing (multiple)
+        ✓ should return down-right
+        ✓ should return down-right (multiple)
+        ✓ should return down-right capturing
+        ✓ should return down-right capturing (multiple)
+      queen
+        ✓ should return left
+        ✓ should return left (multiple)
+        ✓ should return left capturing
+        ✓ should return left capturing (multiple)
+        ✓ should return right
+        ✓ should return right (multiple)
+        ✓ should return right capturing
+        ✓ should return right capturing (multiple)
+        ✓ should return down
+        ✓ should return down (multiple)
+        ✓ should return down capturing
+        ✓ should return down capturing (multiple)
+        ✓ should return up
+        ✓ should return up (multiple)
+        ✓ should return up capturing
+        ✓ should return up capturing (multiple)
+        ✓ should return up-left
+        ✓ should return up-left (multiple)
+        ✓ should return up-left capturing
+        ✓ should return up-left capturing (multiple)
+        ✓ should return up-right
+        ✓ should return up-right (multiple)
+        ✓ should return up-right capturing
+        ✓ should return up-right capturing (multiple)
+        ✓ should return down-left
+        ✓ should return down-left (multiple)
+        ✓ should return down-left capturing
+        ✓ should return down-left capturing (multiple)
+        ✓ should return down-right
+        ✓ should return down-right (multiple)
+        ✓ should return down-right capturing
+        ✓ should return down-right capturing (multiple)
+
+  parser.test1.pgn
+    toString
+      ✓ should resconstruct
+    parseTags
+      ✓ should parse tags
+    tokenizeLines
+      ✓ should tokenize lines
+    parse
+      ✓ should parse
+    tokenizeLine
+      ✓ should tokenize lines
+    parseTurn
+      ✓ should parse turn
+    processTurn
+      ✓ should parse turns
+
+  parser.test2.pgn
+    toString
+      ✓ should resconstruct (57ms)
+    parseTags
+      ✓ should parse tags
+    tokenizeLines
+      ✓ should tokenize lines
+    parse
+      ✓ should parse (60ms)
+    tokenizeLine
+      ✓ should tokenize lines
+    parseTurn
+      ✓ should parse turn
+    processTurn
+      ✓ should parse turns (57ms)
+
+  parser.test3.pgn
+    toString
+      ✓ should resconstruct (172ms)
+    parseTags
+      ✓ should parse tags
+    tokenizeLines
+      ✓ should tokenize lines
+    parse
+      ✓ should parse (172ms)
+      ✓ should parse nested timeline1s in (173ms)
+    tokenizeLine
+      ✓ should tokenize lines
+    parseTurn
+      ✓ should parse turn
+    processTurn
+      ✓ should parse turns (161ms)
+
+  parser.test4.pgn
+    toString
+      ✓ should resconstruct (181ms)
+    parseTags
+      ✓ should parse tags
+    tokenizeLines
+      ✓ should tokenize lines
+    parse
+      ✓ should parse (184ms)
+    tokenizeLine
+      ✓ should tokenize lines
+    parseTurn
+      ✓ should parse turn
+    processTurn
+      ✓ should parse turns (190ms)
+
+  parser.test5.pgn
+    toString
+      ✓ should resconstruct (161ms)
+    parseTags
+      ✓ should parse tags
+    tokenizeLines
+      ✓ should tokenize lines
+    parse
+      ✓ should parse (159ms)
+    tokenizeLine
+      ✓ should tokenize lines
+    parseTurn
+      ✓ should parse turn
+    processTurn
+      ✓ should parse turns (166ms)
+
+  parser.test6.pgn
+    toString
+      ✓ should resconstruct (73ms)
+    parseTags
+      ✓ should parse tags
+    tokenizeLines
+      ✓ should tokenize lines
+    parse
+      ✓ should parse (68ms)
+    tokenizeLine
+      ✓ should tokenize lines
+    parseTurn
+      ✓ should parse turn
+    processTurn
+      ✓ should parse turns (67ms)
+
+
+  209 passing (2s)
+

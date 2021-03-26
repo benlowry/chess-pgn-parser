@@ -12,6 +12,38 @@ describe('parser.js', () => {
   describe('parseTags', () => {
   })
 
+  describe('extractNextLine', () => {
+    it('should extract turn 1', () => {
+      const pgn = '1. a5 b7 2. e3 f7'
+      const line = parser.extractNextLine(pgn)
+      assert.strictEqual(line, '1. a5 b7')
+    })
+
+    it('should extract turn with annotation', () => {
+      const pgn = '1. a5 b7 {ANNOTATION} 2. a4 b6'
+      const line = parser.extractNextLine(pgn)
+      assert.strictEqual(line, '1. a5 b7 {ANNOTATION}')
+    })
+
+    it('should extract turn with nested turns', () => {
+      const pgn = '1. a5 b7 (1. b5 c7) 2. f1 g7'
+      const line = parser.extractNextLine(pgn)
+      assert.strictEqual(line, '1. a5 b7 (1. b5 c7)')
+    })
+
+    it('should extract turn with preceeding annotation', () => {
+      const pgn = '{ANNOTATION} 1. a5 b7 2. h3 h7'
+      const line = parser.extractNextLine(pgn)
+      assert.strictEqual(line, '{ANNOTATION} 1. a5 b7')
+    })
+
+    it('should extract turn with preceeding nested turns', () => {
+      const pgn = '1. a5 b7 (1. b5 c7) 2. d3 c4'
+      const line = parser.extractNextLine(pgn)
+      assert.strictEqual(line, '1. a5 b7 (1. b5 c7)')
+    })
+  })
+
   describe('processTurn', () => {
     it('should move piece', () => {
       const pieces = [{ type: 'Q', coordinate: 'b4', color: 'w' }]

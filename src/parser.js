@@ -434,34 +434,37 @@
    *
    * 1. e4 [ %cal Ra1b2 ] e5
    */
-  function parseNextLine (moveText) {
+  function extractNextLine (moveText) {
     const parts = moveText.split(' ')
     const line = []
     let index = 0
+    let annotated
+    let moveNumber
     while (index < parts.length) {
       const part = parts[index]
       if (part.indexOf('(') === 0 || part.indexOf('{') === 0 || part.indexOf('[') === 0) {
         const closingIndex = findClosingBracket(index, parts)
         line.push(parts.slice(index, closingIndex).join(' '))
         index = closingIndex
+        annotated = true
         continue
       }
       const dotIndex = part.indexOf('.')
       if (dotIndex > 0 && dotIndex < 4) {
-        const moveNumber = part.substring(0, dotIndex)
+        moveNumber = part.substring(0, dotIndex)
         let moveInt
         try {
           moveInt = parseInt(moveNumber, 10)
         } catch (error) {
         }
-        if (moveInt.toString() === moveNumber && line.length) {
+        if (moveInt.toString() === moveNumber && ((line.length > 1 && annotated) || (line.length && !annotated))) {
           break
         }
       }
       line.push(part)
       index++
     }
-    return line.join(' ')
+    return line.join(' ').replace(`${moveNumber}. `, `${moveNumber}.`).replace(`${moveNumber}... `, `${moveNumber}...`)
   }
 
   /**

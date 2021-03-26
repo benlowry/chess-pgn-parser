@@ -594,7 +594,7 @@
       if (part.startsWith('$')) {
         continue
       }
-      if (part.indexOf('*') > -1 || part.indexOf('/') > -1) {
+      if (part.indexOf('*') > -1 || part.indexOf('/') > -1 || part.indexOf('.') > -1) {
         continue
       }
       if (part.indexOf('O-O') === -1 && part.indexOf('-') > -1) {

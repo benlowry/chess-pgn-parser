@@ -5,6 +5,7 @@
   exports.calculatePieceMovement = calculatePieceMovement
   exports.cleanSpacing = cleanSpacing
   exports.createTurnObject = createTurnObject
+  exports.extractNextLine = extractNextLine
   exports.findClosingBracket = findClosingBracket
   exports.findCoordinates = findCoordinates
   exports.tokenizeLine = tokenizeLine
@@ -335,7 +336,14 @@
         text = text.split(spacing.double).join(spacing.single)
       }
     }
-    return text
+    for (let i = 1, len = 150; i < len; i++) {
+      if (text.indexOf(i.toString()) === -1) {
+        continue
+      }
+      text = text.split(`${i}. `).join(`${i}.`)
+      text = text.split(`${i}... `).join(`${i}...`)
+    }
+    return text.trim()
   }
 
   /*
@@ -345,7 +353,8 @@
     * [
     *   '1. a5 {[%csl a5]} b7',
     *   '2. f3 (2. d4 {an annotated turn})',
-    *   '2... a6'
+    *   '2... a6',
+    *   '{prepended annotation} 3. f7'
     * ]
     */
   function tokenizeLines (pgnFileData) {
@@ -354,10 +363,10 @@
     rawMoveData = cleanSpacing(rawMoveData)
     const tokens = []
     while (rawMoveData.length) {
-      const line = parseNextLine(rawMoveData)
+      const line = extractNextLine(rawMoveData)
       rawMoveData = rawMoveData.substring(line.length + 1)
       if (line) {
-        tokens.push(line)
+        tokens.push(line.trim())
       }
     }
     return tokens

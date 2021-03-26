@@ -539,6 +539,14 @@ describe('parser.js', () => {
       moveTest('should return right-up capturing', pieces, ['f4', 'e5'])
       pieces = [{ type: 'P', coordinate: 'e5', color: 'b', start: 'e7' }, { type: 'P', coordinate: 'f4', color: 'w', start: 'f2' }]
       moveTest('should return right-down capturing', pieces, ['e5', 'f4'])
+      pieces = [{ type: 'P', coordinate: 'd5', color: 'w', start: 'd2' }, { type: 'P', coordinate: 'c5', color: 'b', start: 'c7' }]
+      moveTest('should return left-up en passant capturing', pieces, ['d5', 'c6'])
+      pieces = [{ type: 'P', coordinate: 'c4', color: 'b', start: 'c7' }, { type: 'P', coordinate: 'd4', color: 'w', start: 'd2' }]
+      moveTest('should return left-down en passant capturing', pieces, ['c4', 'd3'])
+      pieces = [{ type: 'P', coordinate: 'd5', color: 'w', start: 'd2' }, { type: 'P', coordinate: 'e5', color: 'b', start: 'e7' }]
+      moveTest('should return right-up en passant capturing', pieces, ['d5', 'e6'])
+      pieces = [{ type: 'P', coordinate: 'e4', color: 'b', start: 'e7' }, { type: 'P', coordinate: 'f4', color: 'w', start: 'f2' }]
+      moveTest('should return right-down en passant capturing', pieces, ['e4', 'f3'])
     })
     describe('king', () => {
       let pieces = [{ type: 'K', coordinate: 'b4', color: 'w' }]

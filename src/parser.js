@@ -780,17 +780,17 @@
             return [piece.coordinate, captureLeft]
           }
           if (piece.color === 'w') {
-            const enPassantDownCoordinate = addRow(move.to, -1)
-            if (enPassantDownCoordinate) {
-              const downPiece = checkObstructed(enPassantDownCoordinate, pieces)
+            const enPassantCoordinate = addRow(move.to, -1)
+            if (enPassantCoordinate) {
+              const downPiece = checkObstructed(enPassantCoordinate, pieces)
               if (downPiece && downPiece.type === 'P' && downPiece.color !== piece.color) {
                 return [piece.coordinate, captureLeft]
               }
             }
           } else if (piece.color === 'b') {
-            const enPassantUpCoordinate = addRow(move.to, -1)
-            if (enPassantUpCoordinate) {
-              const upPiece = checkObstructed(enPassantUpCoordinate, pieces)
+            const enPassantCoordinate = addRow(move.to, +1)
+            if (enPassantCoordinate) {
+              const upPiece = checkObstructed(enPassantCoordinate, pieces)
               if (upPiece && upPiece.type === 'P' && upPiece.color !== piece.color) {
                 return [piece.coordinate, captureRight]
               }
@@ -804,17 +804,17 @@
             return [piece.coordinate, captureRight]
           }
           if (piece.color === 'w') {
-            const enPassantDownCoordinate = addRow(move.to, -1)
-            if (enPassantDownCoordinate) {
-              const downPiece = checkObstructed(enPassantDownCoordinate, pieces)
+            const enPassantCoordinate = addRow(move.to, -1)
+            if (enPassantCoordinate) {
+              const downPiece = checkObstructed(enPassantCoordinate, pieces)
               if (downPiece && downPiece.type === 'P' && downPiece.color !== piece.color) {
-                return [piece.coordinate, captureLeft]
+                return [piece.coordinate, captureRight]
               }
             }
           } else if (piece.color === 'b') {
-            const enPassantUpCoordinate = addRow(move.to, -1)
-            if (enPassantUpCoordinate) {
-              const upPiece = checkObstructed(enPassantUpCoordinate, pieces)
+            const enPassantCoordinate = addRow(move.to, +1)
+            if (enPassantCoordinate) {
+              const upPiece = checkObstructed(enPassantCoordinate, pieces)
               if (upPiece && upPiece.type === 'P' && upPiece.color !== piece.color) {
                 return [piece.coordinate, captureRight]
               }

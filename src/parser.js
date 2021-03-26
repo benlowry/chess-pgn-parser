@@ -776,14 +776,14 @@
         const captureLeft = addColumn(nextValue, -1)
         if (move.to === captureLeft) {
           const captureLeftPiece = checkObstructed(captureLeft, pieces)
-          if (captureLeftPiece && move.capturing && captureLeftPiece.color !== piece.color) {
+          if (captureLeftPiece && captureLeftPiece.color !== piece.color) {
             return [piece.coordinate, captureLeft]
           }
         }
         const captureRight = addColumn(nextValue)
         if (move.to === captureRight) {
           const captureRightPiece = checkObstructed(captureRight, pieces)
-          if (captureRightPiece && move.capturing && captureRightPiece.color !== piece.color) {
+          if (captureRightPiece && captureRightPiece.color !== piece.color) {
             return [piece.coordinate, captureRight]
           }
         }

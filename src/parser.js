@@ -171,6 +171,9 @@
       const movingPiece = findMovingPiece(turn, pieces)
       movingPiece.coordinateBefore = movingPiece.coordinate
       movingPiece.coordinate = turn.to
+      if (turn.promoted) {
+        movingPiece.type = turn.promotedTo
+      }
       if (turn.capturing) {
         for (const piece of pieces) {
           if (piece.coordinate === movingPiece.coordinate && piece !== movingPiece) {
@@ -552,12 +555,16 @@
     if (checkMate) {
       to = to.replace('#', '')
     }
-    const promoted = to.indexOf('=') > -1
+    let promoted = to.indexOf('=')
     let promotedTo
-    if (promoted) {
-      promotedTo = to.substring(to.indexOf('=') + 1).trim()
+    if (promoted > -1) {
+      promotedTo = to.substring(promoted + 1)
       promotedTo = promotedTo || 'Q'
-      to = to.substring(0, to.indexOf('='))
+      to = to.substring(0, promoted)
+      promoted = true
+    } else {
+      promoted = undefined
+      promotedTo = undefined
     }
     let requireRow, requireColumn
     if (to.length > 2) {

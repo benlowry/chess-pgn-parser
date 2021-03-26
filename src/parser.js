@@ -138,7 +138,6 @@
    * then returns the modified array of pieces
    */
   function processTurn (turn, turns, pieces) {
-    console.log('processTurn', turn)
     for (const piece of pieces) {
       delete (piece.coordinateBefore)
       delete (piece.moveSteps)
@@ -627,7 +626,6 @@
     let openSquare = 0
     let openBrace = 0
     const bracket = array[index].charAt(0)
-    console.log('bracket', bracket)
     let finish = index
     while (finish < array.length) {
       let part = '' + array[finish]
@@ -635,12 +633,10 @@
         while (part.indexOf('(') > -1) {
           openParantheses++
           part = part.replace('(', '')
-          console.log(finish, 'open parantheses++', openParantheses)
         }
         while (part.indexOf(')') > -1) {
           openParantheses--
           part = part.replace(')', '')
-          console.log(finish, 'open parantheses--', openParantheses)
         }
       } else if (bracket === '{') {
         while (part.indexOf('{') > -1) {
@@ -662,13 +658,10 @@
         }
       }
       if (!openParantheses && !openSquare && !openBrace) {
-        console.log('found ending', finish + 1, 'out of', array.length)
-        console.log(array.slice(index, finish + 1).join(' '))
         return finish + 1
       }
       finish++
     }
-    console.log('never found ending....')
     return finish
   }
 
@@ -723,15 +716,10 @@
       piece.moveSteps = moves
       return piece
     }
-    console.log(move)
-    for (const piece of pieces) {
-      console.log(piece.type, piece.color, piece.coordinate, piece.start)
-    }
     throw new Error('could not determine piece for coordinate "' + move.to + '"')
   }
 
   function calculatePieceMovement (piece, move, pieces) {
-    console.log('calculate piece movement', piece, move)
     if (piece.type === 'N') {
       for (const knightJumpDirection in knightMoveDirections) {
         const knightMoves = [piece.coordinate]

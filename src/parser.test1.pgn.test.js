@@ -29,7 +29,7 @@ describe('parser.test1.pgn', () => {
   describe('tokenizeLines', () => {
     it('should tokenize lines', async () => {
       const tokenizedPGN = parser.tokenizeLines(demoPGN)
-      const demo = parser.cleanSpacing('1.' + demoPGN.split(']\n\n1.')[1])
+      const demo = parser.cleanSpacing(demoPGN)
       const tokenized = parser.cleanSpacing(tokenizedPGN.join(' '))
       assert.strictEqual(demo.endsWith(tokenized), true)
     })
@@ -48,7 +48,7 @@ describe('parser.test1.pgn', () => {
   })
 
   describe('tokenizeLine', () => {
-    it('should tokenize lines', async () => {
+    it('should tokenize line', async () => {
       const tokenizedPGN = parser.tokenizeLines(demoPGN)
       const line1 = parser.tokenizeLine(tokenizedPGN[9])
       assert.strictEqual(line1.length, 3)

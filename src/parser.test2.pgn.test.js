@@ -52,7 +52,7 @@ describe('parser.test2.pgn', () => {
   })
 
   describe('tokenizeLine', () => {
-    it('should tokenize lines', async () => {
+    it('should tokenize line', async () => {
       const tokenizedPGN = parser.tokenizeLines(demoPGN)
       const line1 = parser.tokenizeLine(tokenizedPGN[9])
       assert.strictEqual(line1.length, 5)

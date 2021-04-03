@@ -107,11 +107,7 @@
           const prepend = turn.pgn.substring(0, turn.pgn.indexOf(turn.sequence[0]))
           moveText.push(prepend + turn.sequence.join(' '))
         }
-        let combined = `${tagText.join('\n')}\n\n${moveText.join(' ')}`
-        for (let i = 150; i > 0; i--) {
-          combined = combined.split(`${i}. `).join(`${i}.`)
-        }
-        return combined
+        return `${tagText.join('\n')}\n\n${moveText.join(' ')}`
       }
     }
   }

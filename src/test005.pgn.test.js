@@ -64,7 +64,7 @@ describe('test005.pgn', () => {
       assert.strictEqual(line1.length, 6)
       assert.strictEqual(line1[0], '10.')
       assert.strictEqual(line1[1], 'Nd2')
-      assert.strictEqual(line1[2], "$1")
+      assert.strictEqual(line1[2], '$1')
       assert.strictEqual(line1[3], '{[%cal Ye2g4,Yd2e4,Yc3e4]}')
       assert.strictEqual(line1[4], 'Na6')
       assert.strictEqual(line1[5], "(10...a6 {Black can also try this plan but it's a bit too congested on the queenside to realistically expect black to be able to play b7-b5.} 11.a4 {[%cal Yd2c4,Yc1f4,Ya4b5]} Bd7 {[%csl Rb8]})")

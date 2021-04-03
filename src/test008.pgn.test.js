@@ -136,7 +136,7 @@ describe('test008.pgn', () => {
       }
       const finalPiecePositions = turns[turns.length - 1].pieces
       assert.strictEqual(finalPiecePositions.length, 22)
-      let found = finalPiecePositions.filter(piece => piece.color === 'b' && piece.type === 'P' && piece.coordinate === 'a6')
+      const found = finalPiecePositions.filter(piece => piece.color === 'b' && piece.type === 'P' && piece.coordinate === 'a6')
       assert.strictEqual(found.length, 1)
       finalPiecePositions.filter(piece => piece.color === 'b' && piece.type === 'P' && piece.coordinate === 'b5')
       assert.strictEqual(found.length, 1)

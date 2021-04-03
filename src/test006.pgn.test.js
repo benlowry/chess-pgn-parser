@@ -63,7 +63,7 @@ describe('test006.pgn', () => {
       assert.strictEqual(line1.length, 3)
       assert.strictEqual(line1[0], '9.')
       assert.strictEqual(line1[1], 'O-O')
-      assert.strictEqual(line1[2], "Nge7")
+      assert.strictEqual(line1[2], 'Nge7')
       const line2 = parser.tokenizeLine(tokenizedPGN[2])
       assert.strictEqual(line2.length, 3)
       assert.strictEqual(line2[0], '3.')

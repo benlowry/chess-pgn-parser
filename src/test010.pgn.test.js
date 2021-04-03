@@ -68,7 +68,7 @@ describe('test010.pgn', () => {
   })
 
   describe('parseTurn', () => {
-   it('should parse turn', async () => {
+    it('should parse turn', async () => {
       const tokenizedPGN = parser.tokenizeLines(demoPGN)
       const turn1 = parser.parseTurn(tokenizedPGN[9])
       assert.strictEqual(turn1[0].moveNumber, '10')

@@ -213,149 +213,149 @@
 
   test002.pgn
     toString
-      ✓ should resconstruct (56ms)
+      ✓ should resconstruct (58ms)
     parseTags
       ✓ should parse tags
     tokenizeLines
       ✓ should tokenize lines
     parse
-      ✓ should parse (63ms)
+      ✓ should parse (61ms)
     tokenizeLine
       ✓ should tokenize line
     parseTurn
       ✓ should parse turn
     processTurn
-      ✓ should parse turns (56ms)
+      ✓ should parse turns (58ms)
 
   test003.pgn
     toString
-      ✓ should resconstruct (168ms)
+      ✓ should resconstruct (166ms)
     parseTags
       ✓ should parse tags
     tokenizeLines
       ✓ should tokenize lines
     parse
-      ✓ should parse (164ms)
-      ✓ should parse nested timeline1s in (162ms)
+      ✓ should parse (155ms)
+      ✓ should parse nested timeline1s in (170ms)
     tokenizeLine
       ✓ should tokenize line
     parseTurn
       ✓ should parse turn
     processTurn
-      ✓ should parse turns (170ms)
+      ✓ should parse turns (163ms)
 
   test004.pgn
     toString
-      ✓ should resconstruct (188ms)
+      ✓ should resconstruct (186ms)
     parseTags
       ✓ should parse tags
     tokenizeLines
       ✓ should tokenize lines
     parse
-      ✓ should parse (201ms)
+      ✓ should parse (181ms)
     tokenizeLine
       ✓ should tokenize line
     parseTurn
       ✓ should parse turn
     processTurn
-      ✓ should parse turns (192ms)
+      ✓ should parse turns (188ms)
 
   test005.pgn
     toString
-      ✓ should resconstruct (169ms)
+      ✓ should resconstruct (170ms)
     parseTags
       ✓ should parse tags
     tokenizeLines
       ✓ should tokenize lines
     parse
-      ✓ should parse (172ms)
+      ✓ should parse (163ms)
     tokenizeLine
       ✓ should tokenize line
     parseTurn
       ✓ should parse turn
     processTurn
-      ✓ should parse turns (182ms)
+      ✓ should parse turns (168ms)
 
   test006.pgn
     toString
-      ✓ should resconstruct (78ms)
+      ✓ should resconstruct (71ms)
     parseTags
       ✓ should parse tags
     tokenizeLines
       ✓ should tokenize lines
     parse
-      ✓ should parse (70ms)
+      ✓ should parse (72ms)
     tokenizeLine
       ✓ should tokenize line
     parseTurn
       ✓ should parse turn
     processTurn
-      ✓ should parse turns (68ms)
+      ✓ should parse turns (69ms)
 
   test007.pgn
     toString
-      ✓ should resconstruct (173ms)
+      ✓ should resconstruct (182ms)
     parseTags
       ✓ should parse tags
     tokenizeLines
       ✓ should tokenize lines
     parse
-      ✓ should parse (182ms)
+      ✓ should parse (171ms)
     tokenizeLine
       ✓ should tokenize line
     parseTurn
       ✓ should parse turn
     processTurn
-      ✓ should parse turns (185ms)
+      ✓ should parse turns (172ms)
 
   test008.pgn
     toString
-      ✓ should resconstruct (110ms)
+      ✓ should resconstruct (104ms)
     parseTags
       ✓ should parse tags
     tokenizeLines
       ✓ should tokenize lines
     parse
-      ✓ should parse (112ms)
+      ✓ should parse (105ms)
     tokenizeLine
       ✓ should tokenize line
     parseTurn
       ✓ should parse turn
     processTurn
-      ✓ should parse turns (108ms)
+      ✓ should parse turns (103ms)
 
   test009.pgn
     toString
-      ✓ should resconstruct (231ms)
+      ✓ should resconstruct (213ms)
     parseTags
       ✓ should parse tags
     tokenizeLines
       ✓ should tokenize lines
     parse
-      ✓ should parse (228ms)
+      ✓ should parse (212ms)
     tokenizeLine
       ✓ should tokenize line
     parseTurn
       ✓ should parse turn
     processTurn
-      ✓ should parse turns (225ms)
+      ✓ should parse turns (217ms)
 
   test010.pgn
     toString
-      ✓ should resconstruct (226ms)
+      ✓ should resconstruct (224ms)
     parseTags
       ✓ should parse tags
     tokenizeLines
       ✓ should tokenize lines
     parse
-      ✓ should parse (243ms)
+      ✓ should parse (230ms)
     tokenizeLine
       ✓ should tokenize line
     parseTurn
       ✓ should parse turn
     processTurn
-      ✓ should parse turns (241ms)
+      ✓ should parse turns (223ms)
 
 
-  241 passing (5s)
+  241 passing (4s)
 

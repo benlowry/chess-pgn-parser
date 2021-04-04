@@ -373,6 +373,10 @@
         tokens.push(line.trim())
       }
     }
+    if (tokens[0].startsWith('$')) {
+      const first = tokens.shift()
+      tokens[0] = `${first} ${tokens[0]}`
+    }
     return tokens
   }
 
@@ -388,6 +392,9 @@
     *    [ 'f3', '(2. d4 {an annotated turn})' ]
     *   '2... a6'
     *    [ '2...', 'a6' ]
+    *
+    *   '$0 3... a6'
+    *    [ '$0', '3...', 'a6 ]
     */
   function tokenizeLine (lineData) {
     const parts = lineData.split(' ')

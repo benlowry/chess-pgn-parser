@@ -92,15 +92,15 @@
     for (const turn of turns) {
       processTurn(turn, turns, pieces)
     }
-    return {
+    const pgnData = {
       FEN: startingFEN,
       tags,
       turns,
       toString: () => {
         const tagText = []
-        const tagKeys = Object.keys(tags)
+        const tagKeys = Object.keys(pgnData.tags)
         for (const tag of tagKeys) {
-          tagText.push(`[${tag} "${tags[tag]}"]`)
+          tagText.push(`[${tag} "${pgnData.tags[tag]}"]`)
         }
         const moveText = []
         for (const turn of turns) {
@@ -110,6 +110,7 @@
         return `${tagText.join('\n')}\n\n${moveText.join(' ')}`
       }
     }
+    return pgnData
   }
 
   /*

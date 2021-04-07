@@ -104,8 +104,7 @@
         }
         const moveText = []
         for (const turn of turns) {
-          const prepend = turn.pgn.substring(0, turn.pgn.indexOf(turn.sequence[0]))
-          moveText.push(prepend + turn.sequence.join(' '))
+          moveText.push(turn.sequence.join(' '))
         }
         return `${tagText.join('\n')}\n\n${cleanSpacing(moveText.join(' '))}`
       }

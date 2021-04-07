@@ -192,6 +192,7 @@
         }
       }
     }
+    turn.previousPieces = JSON.parse(previousPieces)
     turn.pieces = JSON.parse(JSON.stringify(pieces))
     turn.fen = toFen(pieces, turn, turns)
   }

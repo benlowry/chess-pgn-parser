@@ -347,6 +347,8 @@
       }
       text = text.split(`${i}. `).join(`${i}.`)
       text = text.split(`${i}... `).join(`${i}...`)
+      text = text.split(`${i}.{`).join(`${i}. {`)
+      text = text.split(`${i}...{`).join(`${i}... {`)
     }
     return text.trim()
   }

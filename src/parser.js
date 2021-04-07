@@ -810,7 +810,7 @@
             if (enPassantCoordinate) {
               const upPiece = checkObstructed(enPassantCoordinate, pieces)
               if (upPiece && upPiece.type === 'P' && upPiece.color !== piece.color) {
-                return [piece.coordinate, captureRight]
+                return [piece.coordinate, captureLeft]
               }
             }
           }

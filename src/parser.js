@@ -127,8 +127,13 @@
           continue
         }
         const itemLines = tokenizeLines(item.substring(1, item.length - 1))
+        const siblingTurns = parseRecursively(itemLines)
         turn.siblings = turn.siblings || []
-        turn.siblings.push(parseRecursively(itemLines))
+        turn.siblings.push(siblingTurns)
+        for (const nestedTurn of siblingTurns) {
+          nestedTurn.parentTurn = turn
+          nestedTurn.parentTurns = results
+        }
       }
     }
     return results
@@ -187,7 +192,7 @@
       for (const sibling of turn.siblings) {
         const piecesFork = JSON.parse(previousPieces)
         for (const turn of sibling) {
-          processTurn(turn, JSON.parse(JSON.stringify(turns)), piecesFork)
+          processTurn(turn, turns, piecesFork)
         }
       }
     }

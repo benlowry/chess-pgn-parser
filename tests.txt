@@ -348,14 +348,14 @@
     tokenizeLines
       ✓ should tokenize lines
     parse
-      ✓ should parse (39ms)
+      ✓ should parse
     tokenizeLine
       ✓ should tokenize line
     parseTurn
       ✓ should parse turn
     processTurn
-      ✓ should parse turns (45ms)
+      ✓ should parse turns
 
 
-  241 passing (725ms)
+  241 passing (716ms)
 

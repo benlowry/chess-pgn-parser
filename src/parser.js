@@ -132,7 +132,6 @@
         turn.siblings.push(siblingTurns)
         for (const nestedTurn of siblingTurns) {
           nestedTurn.parentTurn = turn
-          nestedTurn.parentTurns = results
         }
       }
     }

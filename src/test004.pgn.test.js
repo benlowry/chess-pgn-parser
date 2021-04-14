@@ -126,11 +126,7 @@ describe('test004.pgn', () => {
         { type: 'R', color: 'w', start: 'h1', coordinate: 'h1', image: 'oR.png' }
       ]
       for (const turn of turns) {
-        try {
-          parser.processTurn(turn, turns, pieces)
-        } catch (error) {
-          console.log('error', turn, error)
-        }
+        parser.processTurn(turn, turns, pieces)
       }
       // the main timeline (0)
       let piece = turns[0].pieces.filter(piece => piece.coordinateBefore)[0]

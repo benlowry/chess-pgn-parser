@@ -146,11 +146,7 @@ describe('test003.pgn', () => {
         { type: 'R', color: 'w', start: 'h1', coordinate: 'h1', image: 'oR.png' }
       ]
       for (const turn of turns) {
-        try {
-          parser.processTurn(turn, turns, pieces)
-        } catch (error) {
-          // console.log('error processing turn', turn.pgn)
-        }
+        parser.processTurn(turn, turns, pieces)
       }
       // approximately true-scale timeline map
       // 0 0 0 0 0 0 0 0 0 0 0 0 0 0
